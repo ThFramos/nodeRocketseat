@@ -1,12 +1,14 @@
 const express = require('express');//acesso ao express
 const mongoose = require('mongoose');// atualização automatica do servidor ao salvar arquivo
 const requireDir = require('require-dir');//biblioteca facilita a require dos models
-
+const cors = require('cors'); //biblioteca de acesso por domínios e seguranças
 /* 
 iniciando o app
 */
 const app = express();//executar a função express
 
+app.use(express.json()); // permitir que os dados sejam enviados no formado json para db
+app.use(cors()); // passar parametrso de acesso de dominios e confi. de segurança
 //iniciando o DB -> passando a url de conexão, caso tenha usuario de conexão deverá ser passado. ex:mongodb://user@password/ porta/nome da database
 mongoose.connect("mongodb://localhost:27017/nodeapi",{
      useUnifiedTopology: true,
